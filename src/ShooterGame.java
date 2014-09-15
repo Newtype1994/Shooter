@@ -17,27 +17,27 @@ public class ShooterGame extends BasicGame{
 	}
 
 	@Override
-	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
+	public void render(GameContainer container, Graphics g) throws SlickException {
 		player1.draw();
 		player2.draw();
 		
 	}
 
 	@Override
-	public void init(GameContainer arg0) throws SlickException {
+	public void init(GameContainer container) throws SlickException {
 		player1 = new Player(0,240);
 		player2 = new Player(608,240);
 		
 	}
 	
-	void updatePlayerMovemoent(Input input,int delta){
+	void updatePlayerMovement(Input input,int delta){
 		
 	}
 
 	@Override
-	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
-		
+	public void update(GameContainer container, int delta) throws SlickException {
+		Input input = container.getInput();
+		updatePlayerMovement(input,delta);
 	}
 	
 	public static void main(String[] args) {
