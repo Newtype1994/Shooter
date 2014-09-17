@@ -32,17 +32,7 @@ public class ShooterGame extends BasicGame{
 	@Override
 	public void init(GameContainer container) throws SlickException {
 		player1 = new Player(0,240);
-		for(int i=0;i<32;i++){
-			for(int j=240;j<272;j++){
-				map[i][j] = 1;
-			}
-		}
 		player2 = new Player(608,240);
-		for(int i=608;i<640;i++){
-			for(int j=240;j<272;j++){
-				map[i][j] = 1;
-			}
-		}
 		for(int i = 0 ; i < 3 ; i++){
 			bullet1[i] = new Bullet(-100,-100);
 			bullet2[i] = new Bullet(-100,-100);
