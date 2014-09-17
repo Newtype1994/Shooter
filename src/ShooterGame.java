@@ -32,9 +32,17 @@ public class ShooterGame extends BasicGame{
 	@Override
 	public void init(GameContainer container) throws SlickException {
 		player1 = new Player(0,240);
-		map[0][240] = 1;
+		for(int i=0;i<32;i++){
+			for(int j=240;j<272;j++){
+				map[i][j] = 1;
+			}
+		}
 		player2 = new Player(608,240);
-		map[608][240] = 2;
+		for(int i=608;i<640;i++){
+			for(int j=240;j<272;j++){
+				map[i][j] = 1;
+			}
+		}
 		for(int i = 0 ; i < 3 ; i++){
 			bullet1[i] = new Bullet(-100,-100);
 			bullet2[i] = new Bullet(-100,-100);
@@ -71,13 +79,13 @@ public class ShooterGame extends BasicGame{
 			player2.move(0,-1);
 		}
 		else if(input.isKeyDown(Input.KEY_DOWN)){
-			player2.move(0,1);
+				player2.move(0,1);
 		}
 		else if(input.isKeyDown(Input.KEY_LEFT)){
-			player2.move(-1,0);
+				player2.move(-1,0);
 		}
 		else if(input.isKeyDown(Input.KEY_RIGHT)){
-			player2.move(1,0);
+				player2.move(1,0);
 		}
 	}
 	
