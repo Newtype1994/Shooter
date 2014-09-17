@@ -32,16 +32,16 @@ public class Bullet {
 	}
 		
 	public void update(){
-		if(this.x + Math.cos(Math.toRadians(rotation-90)) > 0 && this.x + Math.cos(Math.toRadians(rotation-90)) < 620 && this.y + Math.sin(Math.toRadians(rotation-90)) > 0 && this.y + Math.sin(Math.toRadians(rotation-90)) < 460){
-			for(int i=0;i<5;i++){
+		for(int i=0;i<5;i++){
+			if(this.x + Math.cos(Math.toRadians(rotation-90)) > 0 && this.x + Math.cos(Math.toRadians(rotation-90)) < 620 && this.y + Math.sin(Math.toRadians(rotation-90)) > 0 && this.y + Math.sin(Math.toRadians(rotation-90)) < 460){
 				this.x += Math.cos(Math.toRadians(rotation-90));
 				this.y += Math.sin(Math.toRadians(rotation-90));
-			}	
-		}
-		else {
-			this.x = -100;
-			this.y = -100;
-			this.isUse = false;
+			}
+			else {
+				this.x = -100;
+				this.y = -100;
+				this.isUse = false;
+			}
 		}
 	}
 }

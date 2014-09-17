@@ -24,24 +24,9 @@ public class Player {
 			if(this.x + x > 0 && this.x + x < 608){
 				this.x += x;
 			}
-			if(this.x + x > 0 && this.x + x < 608){
-				this.x += x;
-			}
-			if(this.x + x > 0 && this.x + x < 608){
-				this.x += x;
-			}
 			if(this.y + y > 0 && this.y + y < 448){
 				this.y += y;
 			}
-			if(this.y + y > 0 && this.y + y < 448){
-				this.y += y;
-			}
-			if(this.y + y > 0 && this.y + y < 448){
-				this.y += y;
-			}
-			if(x != 0 )this.rotation = (int)Math.toDegrees(Math.acos(x))+90;
-			else this.rotation = (int)Math.toDegrees(Math.asin(y))+90;
-			image.setRotation(rotation);
 		}
 		
 		public void shoot(Bullet[] bullet){
@@ -58,6 +43,11 @@ public class Player {
 		
 		public int getY(){
 			return this.y;
+		}
+		
+		public void setRotation(int rotation){
+			this.rotation = rotation;
+			image.setRotation(rotation);
 		}
 		
 }
