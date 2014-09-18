@@ -139,7 +139,14 @@ public class ShooterGame extends BasicGame{
 		updatePlayer1Movement(input,delta);
 		updatePlayer2Movement(input,delta);
 		for(int i=0;i<3;i++){
+			if(	( (bullet1[i].getX() - player2.getX() < 20 && bullet1[i].getX() - player2.getX() > 0) || (player2.getX() - bullet1[i].getX() < 32 && player2.getX() - bullet1[i].getX() > 0)) && ( (bullet1[i].getY() - player2.getY() < 20 && bullet1[i].getY() - player2.getY() > 0 ) || (player2.getY() - bullet1[i].getY() < 32 && player2.getY() - bullet1[i].getY() > 0))){
+				player2.destroy();
+				bullet1[i].destroy();
+			}
 			bullet1[i].update();
+			if(	((bullet2[i].getX() - player1.getX() < 20 && bullet2[i].getX() - player1.getX() > 0) || (player1.getX() - bullet2[i].getX() < 32 && player1.getX() - bullet2[i].getX() > 0)) && ( (bullet2[i].getY() - player1.getY() < 20 && bullet2[i].getY() - player1.getY() > 0 ) || (player1.getY() - bullet2[i].getY() < 32 && player1.getY() - bullet2[i].getY() > 0))){
+				player1.destroy();
+			}
 			bullet2[i].update();
 		}
 	}

@@ -50,4 +50,9 @@ public class Player {
 			image.setRotation(rotation);
 		}
 		
+		public void destroy() throws SlickException{
+			this.x = -100;
+			this.y = -100;
+		}
+		
 }

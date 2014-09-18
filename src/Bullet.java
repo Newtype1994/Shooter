@@ -38,10 +38,22 @@ public class Bullet {
 				this.y += Math.sin(Math.toRadians(rotation-90));
 			}
 			else {
-				this.x = -100;
-				this.y = -100;
-				this.isUse = false;
+				destroy();
 			}
 		}
+	}
+	
+	public int getX(){
+		return this.x;
+	}
+	
+	public int getY(){
+		return this.y;
+	}
+	
+	public void destroy(){
+		this.x = -100;
+		this.y = -100;
+		this.isUse = false;
 	}
 }
