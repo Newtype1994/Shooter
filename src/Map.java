@@ -15,33 +15,74 @@ public class Map {
 		return map[x][y];
 	}
 	
-	public boolean checkCollision(Object object){
+	public boolean ifX(Object object){
 		if(object.centerX()+object.getWidth()/2*object.vX()+object.vX() < 0 || object.centerX()+object.getWidth()/2*object.vX()+object.vX() >= Width){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean ifY(Object object){
+		if(object.centerY()+object.getHeight()/2*object.vY()+object.vY() < 0 || object.centerY()+object.getHeight()/2*object.vY()+object.vY() >= Height){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean checkCollision(Object object){
+		if(ifX(object)){
 			return false;
 		}
-		if(object.centerY()+object.getHeight()/2*object.vY()+object.vY() < 0 || object.centerY()+object.getHeight()/2*object.vY()+object.vY() >= Height){
+		if(ifY(object)){
 			return false;
+		}
+		if(object.vX() == 0){
+			int i = object.centerX()+object.getWidth()/2;
+			int j = object.centerY()+object.getHeight()/2*object.vY()+object.vY();
+			if( (map[i][j] != 0 && map[i][j] != object.getType()) || (map[i-object.getWidth()][j] != 0 && map[i-object.getWidth()][j] != object.getType())){
+				return false;
+			}
+		}
+		if(object.vY() == 0){
+			int i = object.centerX()+object.getWidth()/2*object.vX()+object.vX();
+			int j = object.centerY()+object.getHeight()/2;
+			if( (map[i][j] != 0 && map[i][j] != object.getType()) || (map[i][j-object.getHeight()] != 0 && map[i][j-object.getHeight()] != object.getType())){
+				return false;
+			}
 		}
 		return true;
+	}
+	
+	public void newDraw(Object object){
+		if(object.vX() == 0){
+			int j = object.centerY()+object.getHeight()/2*object.vY()+object.vY();
+			for(int i = 0 ; i < object.getWidth() ; i++){
+				map[object.getX()+i][j] = object.getType();
+				map[object.getX()+i][j-object.getHeight()*object.vY()] = 0;
+			}
+		}
+		if(object.vY() == 0){
+			int i = object.centerX()+object.getWidth()/2*object.vX()+object.vX();
+			for(int j = 0 ; j < object.getHeight() ; j++){
+				map[i][object.getY()+j] = object.getType();
+				map[i-object.getWidth()*object.vX()][object.getY()+j] = 0;
+			}
+		}
 	}
 	
 	public void drawAll(Object object){
 		if(object.getX()<0)return;
 		for(int i = 0 ; i < object.getHeight() ; i++){
 			for(int j = 0 ; j < object.getWidth() ; j++){
-				map[i+object.getY()][j+object.getX()] = object.getType();
+				map[j+object.getX()][i+object.getY()] = object.getType();
 			}
 		}
-	}
-	
-	public void newDraw(Object object){
-		
 	}
 	
 	public void eraseAll(Object object){
 		for(int i = 0 ; i < +object.getHeight() ; i++){
 			for(int j = 0 ; j < +object.getWidth() ; j++){
-				map[i+object.getY()][j+object.getX()] = 0;
+				map[j+object.getX()][i+object.getY()] = 0;
 			}
 		}
 	}

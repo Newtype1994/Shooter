@@ -30,15 +30,7 @@ public class ShooterMapGame extends BasicGame{
 			bullet1[i].draw();
 			bullet2[i].draw();
 		}
-		arg1.drawString(player1.getX()+" "+player1.getY(),player1.getX(),player1.getY());
-		for(int i=0;i<height;i++){
-			for(int j=0;j<width;j++){
-				if(map.getMap(j,i)!=0){
-					arg1.drawString("1",j,i);
-				}
-			}
-		}
-
+		arg1.drawString(player1.vX()+" "+player1.vY(),player1.getX(),player1.getY());
 	}
 
 	@Override
@@ -134,7 +126,7 @@ public class ShooterMapGame extends BasicGame{
 	
 	public static void main(String[] args) {
 	    try {
-	      ShooterMapGame game = new ShooterMapGame("Flappy Dot");
+	      ShooterMapGame game = new ShooterMapGame("Shooter");
 	      AppGameContainer appgc = new AppGameContainer(game);
 	      appgc.setDisplayMode(width,height, false);
 	      appgc.setTargetFrameRate(60);
