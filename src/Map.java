@@ -53,23 +53,6 @@ public class Map {
 		return true;
 	}
 	
-	public void newDraw(Object object){
-		if(object.vX() == 0){
-			int j = object.centerY()+object.getHeight()/2*object.vY()+object.vY();
-			for(int i = 0 ; i < object.getWidth() ; i++){
-				map[object.getX()+i][j] = object.getType();
-				map[object.getX()+i][j-object.getHeight()*object.vY()] = 0;
-			}
-		}
-		if(object.vY() == 0){
-			int i = object.centerX()+object.getWidth()/2*object.vX()+object.vX();
-			for(int j = 0 ; j < object.getHeight() ; j++){
-				map[i][object.getY()+j] = object.getType();
-				map[i-object.getWidth()*object.vX()][object.getY()+j] = 0;
-			}
-		}
-	}
-	
 	public void drawAll(Object object){
 		if(object.getX()<0)return;
 		for(int i = 0 ; i < object.getHeight() ; i++){

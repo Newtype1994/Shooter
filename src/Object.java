@@ -14,10 +14,13 @@ public class Object {
 	public Object(int type)throws SlickException{
 		this.type = type;
 		if(type == 1 || type == 2){
-			image = new Image("res/Tank.png");
+			image = new Image("res/Tank2.png");
 		}
 		else if(type == 3){
 			image = new Image("res/Bullet.png");
+		}
+		else if(type == 4){
+			image = new Image("res/Wall.png");
 		}
 		this.width = image.getWidth();
 		this.height = image.getHeight();
@@ -50,11 +53,11 @@ public class Object {
 	}
 	
 	public int centerX(){
-		return this.x+this.width/2;
+		return this.x-1+this.width/2;
 	}
 
 	public int centerY(){
-		return this.y+this.height/2;
+		return this.y-1+this.height/2;
 	}
 	
 	public int getType(){
