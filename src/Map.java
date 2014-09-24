@@ -29,28 +29,34 @@ public class Map {
 		return false;
 	}
 	
-	public boolean checkCollision(Object object){
+	public int checkCollision(Object object){
 		if(ifX(object)){
-			return false;
+			return -1;
 		}
 		if(ifY(object)){
-			return false;
+			return -1;
 		}
 		if(object.vX() == 0){
 			int i = object.centerX()+object.getWidth()/2;
 			int j = object.centerY()+object.getHeight()/2*object.vY()+object.vY();
-			if( (map[i][j] != 0 && map[i][j] != object.getType()) || (map[i-object.getWidth()][j] != 0 && map[i-object.getWidth()][j] != object.getType())){
-				return false;
+			if( map[i][j] != 0 && map[i][j] != object.getType()){
+				return map[i][j];
+			}
+			if(map[i-object.getWidth()][j] != 0 && map[i-object.getWidth()][j] != object.getType()){
+				return map[i-object.getWidth()][j];
 			}
 		}
 		if(object.vY() == 0){
 			int i = object.centerX()+object.getWidth()/2*object.vX()+object.vX();
 			int j = object.centerY()+object.getHeight()/2;
-			if( (map[i][j] != 0 && map[i][j] != object.getType()) || (map[i][j-object.getHeight()] != 0 && map[i][j-object.getHeight()] != object.getType())){
-				return false;
+			if( map[i][j] != 0 && map[i][j] != object.getType()){
+				return map[i][j];
+			}
+			if(map[i][j-object.getHeight()] != 0 && map[i][j-object.getHeight()] != object.getType()){
+				return map[i][j-object.getHeight()];
 			}
 		}
-		return true;
+		return 0;
 	}
 	
 	public void drawAll(Object object){

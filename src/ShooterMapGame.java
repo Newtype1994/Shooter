@@ -69,7 +69,7 @@ public class ShooterMapGame extends BasicGame{
 	void updatePlayer1(Input input,int delta)throws SlickException{
 		if(input.isKeyDown(Input.KEY_W)){
 			player1.setRotation(0);
-			if(map.checkCollision(player1)){
+			if(map.checkCollision(player1)==0){
 				map.eraseAll(player1);
 				player1.move();
 				map.drawAll(player1);
@@ -77,7 +77,7 @@ public class ShooterMapGame extends BasicGame{
 		}
 		else if(input.isKeyDown(Input.KEY_S)){
 			player1.setRotation(180);
-			if(map.checkCollision(player1)){
+			if(map.checkCollision(player1)==0){
 				map.eraseAll(player1);
 				player1.move();
 				map.drawAll(player1);
@@ -85,7 +85,7 @@ public class ShooterMapGame extends BasicGame{
 		}
 		else if(input.isKeyDown(Input.KEY_A)){
 			player1.setRotation(270);
-			if(map.checkCollision(player1)){
+			if(map.checkCollision(player1)==0){
 				map.eraseAll(player1);
 				player1.move();
 				map.drawAll(player1);
@@ -93,7 +93,7 @@ public class ShooterMapGame extends BasicGame{
 		}
 		else if(input.isKeyDown(Input.KEY_D)){
 			player1.setRotation(90);
-			if(map.checkCollision(player1)){
+			if(map.checkCollision(player1)==0){
 				map.eraseAll(player1);
 				player1.move();
 				map.drawAll(player1);
@@ -104,7 +104,7 @@ public class ShooterMapGame extends BasicGame{
 	void updatePlayer2(Input input,int delta)throws SlickException{
 		if(input.isKeyDown(Input.KEY_UP)){
 			player2.setRotation(0);
-			if(map.checkCollision(player2)){
+			if(map.checkCollision(player2)==0){
 				map.eraseAll(player2);
 				player2.move();
 				map.drawAll(player2);
@@ -112,7 +112,7 @@ public class ShooterMapGame extends BasicGame{
 		}
 		else if(input.isKeyDown(Input.KEY_DOWN)){
 			player2.setRotation(180);
-			if(map.checkCollision(player2)){
+			if(map.checkCollision(player2)==0){
 				map.eraseAll(player2);
 				player2.move();
 				map.drawAll(player2);
@@ -120,7 +120,7 @@ public class ShooterMapGame extends BasicGame{
 		}
 		else if(input.isKeyDown(Input.KEY_LEFT)){
 			player2.setRotation(270);
-			if(map.checkCollision(player2)){
+			if(map.checkCollision(player2)==0){
 				map.eraseAll(player2);
 				player2.move();
 				map.drawAll(player2);
@@ -128,7 +128,7 @@ public class ShooterMapGame extends BasicGame{
 		}
 		else if(input.isKeyDown(Input.KEY_RIGHT)){
 			player2.setRotation(90);
-			if(map.checkCollision(player2)){
+			if(map.checkCollision(player2)==0){
 				map.eraseAll(player2);
 				player2.move();
 				map.drawAll(player2);
@@ -138,15 +138,27 @@ public class ShooterMapGame extends BasicGame{
 	
 	public void updateBullet(){
 		for(int i = 0 ; i < bulletNum ; i++){
-			if(bullet1[i].getX() != -100 && map.checkCollision(bullet1[i])){
-				map.eraseAll(bullet1[i]);
-				bullet1[i].move();
-				map.drawAll(bullet1[i]);
+			if(bullet1[i].getX() != -100){
+				if(map.checkCollision(bullet1[i])==0){
+					map.eraseAll(bullet1[i]);
+					bullet1[i].move();
+					map.drawAll(bullet1[i]);
+				}
+				else{
+					map.eraseAll(bullet1[i]);
+					bullet1[i].setPosition(-100,-100);
+				}
 			}
-			if(bullet2[i].getX() != -100 && map.checkCollision(bullet2[i])){
-				map.eraseAll(bullet2[i]);
-				bullet2[i].move();
-				map.drawAll(bullet2[i]);
+			if(bullet2[i].getX() != -100){
+				if(map.checkCollision(bullet2[i])==0){
+					map.eraseAll(bullet2[i]);
+					bullet2[i].move();
+					map.drawAll(bullet2[i]);
+				}
+				else{
+					map.eraseAll(bullet2[i]);
+					bullet2[i].setPosition(-100,-100);
+				}
 			}
 		}
 	}
@@ -157,7 +169,7 @@ public class ShooterMapGame extends BasicGame{
 			for(int i = 0 ; i < bulletNum ; i++){
 				if(bullet1[i].getX() == -100){
 					bullet1[i].setRotation(player1.getRotation());
-					bullet1[i].setPosition(player1.centerX()+player1.getWidth()/2*player1.vX()-bullet1[i].getWidth()/2*bullet1[i].vY(),player1.centerY()+player1.getHeight()/2*player1.vY()-bullet1[i].getHeight()/2*bullet1[i].vX());
+					bullet1[i].setPosition(player1.centerX()-bullet1[i].getWidth()/2+player1.getWidth()/2*player1.vX(),player1.centerY()-bullet1[i].getHeight()/2+player1.getHeight()/2*player1.vY());
 					map.drawAll(bullet1[i]);
 					break;
 				}
@@ -167,7 +179,7 @@ public class ShooterMapGame extends BasicGame{
 			for(int i = 0 ; i < bulletNum ; i++){
 				if(bullet2[i].getX() == -100){
 					bullet2[i].setRotation(player2.getRotation());
-					bullet2[i].setPosition(player2.centerX(),player2.centerY());
+					bullet2[i].setPosition(player2.centerX()-bullet2[i].getWidth()/2+player2.getWidth()/2*player2.vX(),player2.centerY()-bullet2[i].getHeight()/2+player2.getHeight()/2*player2.vY());
 					map.drawAll(bullet2[i]);
 					break;
 				}
