@@ -60,18 +60,22 @@ public class Map {
 	}
 	
 	public void drawAll(Object object){
-		if(object.getX()<0)return;
 		for(int i = 0 ; i < object.getHeight() ; i++){
 			for(int j = 0 ; j < object.getWidth() ; j++){
-				map[j+object.getX()][i+object.getY()] = object.getType();
+				if(inMap(j+object.getX(),i+object.getY()))map[j+object.getX()][i+object.getY()] = object.getType();
 			}
 		}
 	}
 	
+	public boolean inMap(int x,int y){
+		if(x>=0 && x<Height && y>=0 && y<Width)return true;
+		return false;
+	}
+	
 	public void eraseAll(Object object){
-		for(int i = 0 ; i < +object.getHeight() ; i++){
-			for(int j = 0 ; j < +object.getWidth() ; j++){
-				map[j+object.getX()][i+object.getY()] = 0;
+		for(int i = 0 ; i < object.getHeight() ; i++){
+			for(int j = 0 ; j < object.getWidth() ; j++){
+				if(inMap(j+object.getX(),i+object.getY()))map[j+object.getX()][i+object.getY()] = 0;
 			}
 		}
 	}
