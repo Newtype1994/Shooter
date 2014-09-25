@@ -14,6 +14,7 @@ public class ShooterMapGame extends BasicGame{
 	private Object[] bullet1;
 	private Object[] bullet2;
 	private Object wall;
+	private Object[] wall2;
 	private static int height = 480;
 	private static int width = 640;
 	private Map map;
@@ -30,9 +31,10 @@ public class ShooterMapGame extends BasicGame{
 		for(int i = 0 ; i < bulletNum ; i++){
 			bullet1[i].draw();
 			bullet2[i].draw();
+			wall2[i].draw();
 		}
 		wall.draw();
-		arg1.drawString(player2.vX()+" "+player2.vY(),player2.getX(),player2.getY());
+		//arg1.drawString(player2.vX()+" "+player2.vY(),player2.getX(),player2.getY());
 		/*for(int i = 0 ; i < height ; i++){
 			for(int j = 0 ; j < width ; j++){
 				if( map.getMap(j, i) != 0){
@@ -53,6 +55,7 @@ public class ShooterMapGame extends BasicGame{
 		map.drawAll(player2);
 		bullet1 = new Object[bulletNum];
 		bullet2 = new Object[bulletNum];
+		wall2 = new Object[3];
 		for(int i = 0 ; i < bulletNum ; i++){
 			bullet1[i] = new Object(3);
 			bullet1[i].setPosition(-100,-100);
@@ -60,6 +63,9 @@ public class ShooterMapGame extends BasicGame{
 			bullet2[i] = new Object(3);
 			bullet2[i].setPosition(-100,-100);
 			map.drawAll(bullet2[i]);
+			wall2[i] = new Object(4);
+			wall2[i].setPosition(width/2,height-wall2[i].getHeight()-(i*100));
+			map.drawAll(wall2[i]);
 		}
 		wall = new Object(4);
 		wall.setPosition(width/2,height/2);
@@ -137,9 +143,11 @@ public class ShooterMapGame extends BasicGame{
 	}
 	
 	public void updateBullet(){
+		int collision;
 		for(int i = 0 ; i < bulletNum ; i++){
+			collision = map.checkCollision(bullet1[i]);
 			if(bullet1[i].getX() != -100){
-				if(map.checkCollision(bullet1[i])==0){
+				if(collision == 0){
 					map.eraseAll(bullet1[i]);
 					bullet1[i].move();
 					map.drawAll(bullet1[i]);
@@ -148,9 +156,13 @@ public class ShooterMapGame extends BasicGame{
 					map.eraseAll(bullet1[i]);
 					bullet1[i].setPosition(-100,-100);
 				}
+				if(collision == 2){
+					player2.setPosition(-100,-100);
+				}
 			}
+			collision = map.checkCollision(bullet2[i]);
 			if(bullet2[i].getX() != -100){
-				if(map.checkCollision(bullet2[i])==0){
+				if(collision==0){
 					map.eraseAll(bullet2[i]);
 					bullet2[i].move();
 					map.drawAll(bullet2[i]);
@@ -158,6 +170,9 @@ public class ShooterMapGame extends BasicGame{
 				else{
 					map.eraseAll(bullet2[i]);
 					bullet2[i].setPosition(-100,-100);
+				}
+				if(collision == 1){
+					player1.setPosition(-100,-100);
 				}
 			}
 		}
@@ -193,6 +208,10 @@ public class ShooterMapGame extends BasicGame{
 		Input input = arg0.getInput();
 		updatePlayer1(input,arg1);
 		updatePlayer2(input,arg1);
+		updatePlayer1(input,arg1);
+		updatePlayer2(input,arg1);
+		updateBullet();
+		updateBullet();
 		updateBullet();
 	}
 	
