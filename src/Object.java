@@ -13,7 +13,7 @@ public class Object {
 	
 	public Object(int type)throws SlickException{
 		this.type = type;
-		if(type == 1 || type == 2){
+		if(type == 1 || type == 2 || type == 5){
 			image = new Image("res/Tank2.png");
 		}
 		else if(type == 3){
