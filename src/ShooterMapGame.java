@@ -40,6 +40,12 @@ public class ShooterMapGame extends BasicGame{
 		}
 		wall.draw();
 		//arg1.drawString(player2.vX()+" "+player2.vY(),player2.getX(),player2.getY());
+		if(dead >= 2){
+			arg1.drawString("Press Esc to start",width/3,height/4);
+			arg1.drawString("Player 1\nW Up\nS Down\nA Left\nD Right\nG Shoot",width/5,height/2);
+			arg1.drawString("Player 2\nArrow Up\nArrow Down\nArrow Left\nArrow Right\nEnter Shoot",2*width/5,height/2);
+			arg1.drawString("Player 3\nI Up\nK Down\nJ Left\nL Right\nP Shoot",3*width/5,height/2);
+		}
 		/*for(int i = 0 ; i < height ; i++){
 			for(int j = 0 ; j < width ; j++){
 				if( map.getMap(j, i) != 0){

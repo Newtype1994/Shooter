@@ -68,7 +68,7 @@ public class Map {
 	}
 	
 	public boolean inMap(int x,int y){
-		if(x>=0 && x<Height && y>=0 && y<Width)return true;
+		if(x>=0 && x<Width && y>=0 && y<Height)return true;
 		return false;
 	}
 	
