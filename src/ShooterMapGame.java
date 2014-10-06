@@ -15,8 +15,9 @@ public class ShooterMapGame extends BasicGame{
 	private Object[] bullet1;
 	private Object[] bullet2;
 	private Object[] bullet3;
-	private Object wall;
+	private Object[] wall1;
 	private Object[] wall2;
+	private Object[] wall3;
 	private static int height = 480;
 	private static int width = 640;
 	private Map map;
@@ -36,9 +37,10 @@ public class ShooterMapGame extends BasicGame{
 			bullet1[i].draw();
 			bullet2[i].draw();
 			bullet3[i].draw();
+			wall1[i].draw();
 			wall2[i].draw();
+			wall3[i].draw();
 		}
-		wall.draw();
 		//arg1.drawString(player2.vX()+" "+player2.vY(),player2.getX(),player2.getY());
 		if(dead >= 2){
 			arg1.drawString("Press Esc to start",width/3,height/4);
@@ -62,26 +64,28 @@ public class ShooterMapGame extends BasicGame{
 		player1.setPosition(-100,-100);
 		player2 = new Object(2);
 		player2.setPosition(-100,-100);
-		player3 = new Object(5);
+		player3 = new Object(3);
 		player3.setPosition(-100,-100);
 		bullet1 = new Object[bulletNum];
 		bullet2 = new Object[bulletNum];
 		bullet3 = new Object[bulletNum];
+		wall1 = new Object[3];
 		wall2 = new Object[3];
+		wall3 = new Object[3];
 		for(int i = 0 ; i < bulletNum ; i++){
-			bullet1[i] = new Object(3);
+			bullet1[i] = new Object(5);
 			bullet1[i].setPosition(-100,-100);
-			bullet2[i] = new Object(3);
+			bullet2[i] = new Object(5);
 			bullet2[i].setPosition(-100,-100);
-			bullet3[i] = new Object(3);
+			bullet3[i] = new Object(5);
 			bullet3[i].setPosition(-100,-100);
-			wall2[i] = new Object(4);
+			wall1[i] = new Object(6);
+			wall1[i].setPosition(width/4,height-wall1[i].getHeight()-(i*200));
+			wall2[i] = new Object(6);
 			wall2[i].setPosition(width/2,height-wall2[i].getHeight()-(i*200));
-			map.drawAll(wall2[i]);
+			wall3[i] = new Object(6);
+			wall3[i].setPosition(3*width/4,height-wall3[i].getHeight()-(i*200));
 		}
-		wall = new Object(4);
-		wall.setPosition(width/2,height/2);
-		map.drawAll(wall);
 	}
 	
 	void updatePlayer1(Input input,int delta)throws SlickException{
@@ -208,7 +212,7 @@ public class ShooterMapGame extends BasicGame{
 					player2.setPosition(-100,-100);
 					dead++;
 				}
-				else if(collision == 5){
+				else if(collision == 3){
 					map.eraseAll(player3);
 					player3.setPosition(-100,-100);
 					dead++;
@@ -252,7 +256,7 @@ public class ShooterMapGame extends BasicGame{
 					player1.setPosition(-100,-100);
 					dead++;
 				}
-				else if(collision == 5){
+				else if(collision == 3){
 					map.eraseAll(player3);
 					player3.setPosition(-100,-100);
 					dead++;
@@ -278,6 +282,9 @@ public class ShooterMapGame extends BasicGame{
 			map.drawAll(bullet2[i]);
 			bullet3[i].setPosition(-100,-100);
 			map.drawAll(bullet3[i]);
+			map.drawAll(wall1[i]);
+			map.drawAll(wall2[i]);
+			map.drawAll(wall3[i]);
 		}
 		dead = 0;
 	}

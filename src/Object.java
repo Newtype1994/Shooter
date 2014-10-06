@@ -9,17 +9,17 @@ public class Object {
 	private int y;
 	private int width;
 	private int height;
-	private int type; //1=Player1,2=Player2,3=Bullet
+	private int type; //1=Player1,2=Player2,3=Player3,5=Bullet,6=Wall
 	
 	public Object(int type)throws SlickException{
 		this.type = type;
-		if(type == 1 || type == 2 || type == 5){
+		if(type == 1 || type == 2 || type == 3){
 			image = new Image("res/Tank2.png");
 		}
-		else if(type == 3){
+		else if(type == 5){
 			image = new Image("res/Bullet.png");
 		}
-		else if(type == 4){
+		else if(type == 6){
 			image = new Image("res/Wall.png");
 		}
 		this.width = image.getWidth();
